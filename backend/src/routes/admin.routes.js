@@ -26,26 +26,59 @@ router.get('/', getAllProducts);
  *       content:
  *         application/json:
  *           schema:
- *             type: object
- *             required: [name, price, sku]
- *             properties:
- *               name:        { type: string }
- *               description: { type: string }
- *               price:       { type: number }
- *               sku:         { type: string }
- *               brand:       { type: string }
- *               category:    { type: string }
- *               stock:       { type: integer }
- *               availability:{ type: boolean }
- *               thumbnail:   { type: string }
- *               images:      { type: array, items: { type: string } }
- *               tags:        { type: array, items: { type: string } }
- *               attributes:  { type: object }
+ *             $ref: '#/components/schemas/ProductInput'
  *     responses:
  *       201:
- *         description: Product created
+ *         description: Product created successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   example: 5
+ *                 name:
+ *                   type: string
+ *                   example: "Audiomax Bluetooth Headphones"
+ *                 price:
+ *                   type: string
+ *                   example: "38.00"
+ *                 sku:
+ *                   type: string
+ *                   example: "WBH-2024-001"
+ *                 brand:
+ *                   type: string
+ *                   example: "Audiomax"
+ *                 category:
+ *                   type: string
+ *                   example: "Electronics"
+ *                 availability:
+ *                   type: boolean
+ *                   example: true
+ *                 stock:
+ *                   type: integer
+ *                   example: 45
+ *                 thumbnail:
+ *                   type: string
+ *                   example: "https://example.com/images/headphones-thumb.jpg"
+ *                 rating:
+ *                   type: string
+ *                   example: "0.00"
+ *                 review_count:
+ *                   type: integer
+ *                   example: 0
+ *                 tags:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ["wireless", "bluetooth"]
+ *                 created_at:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2026-04-08T02:24:40.598Z"
  *       400:
- *         description: Validation error
+ *         description: Bad request / validation error
  *       409:
  *         description: SKU already exists
  */
@@ -63,11 +96,69 @@ router.post('/', validateCreate, createProduct);
  *         required: true
  *         schema:
  *           type: integer
+ *         example: 5
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/ProductInput'
  *     responses:
  *       200:
- *         description: Product updated
+ *         description: Product updated successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   example: 5
+ *                 name:
+ *                   type: string
+ *                   example: "Audiomax Bluetooth Headphones"
+ *                 price:
+ *                   type: string
+ *                   example: "38.00"
+ *                 sku:
+ *                   type: string
+ *                   example: "WBH-2024-001"
+ *                 brand:
+ *                   type: string
+ *                   example: "Audiomax"
+ *                 category:
+ *                   type: string
+ *                   example: "Electronics"
+ *                 availability:
+ *                   type: boolean
+ *                   example: true
+ *                 stock:
+ *                   type: integer
+ *                   example: 45
+ *                 thumbnail:
+ *                   type: string
+ *                   example: "https://example.com/images/headphones-thumb.jpg"
+ *                 rating:
+ *                   type: string
+ *                   example: "0.00"
+ *                 review_count:
+ *                   type: integer
+ *                   example: 0
+ *                 tags:
+ *                   type: array
+ *                   items:
+ *                     type: string
+ *                   example: ["wireless", "bluetooth"]
+ *                 created_at:
+ *                   type: string
+ *                   format: date-time
+ *                   example: "2026-04-08T02:24:40.598Z"
+ *       400:
+ *         description: Bad request / validation error
  *       404:
  *         description: Product not found
+ *       409:
+ *         description: SKU already exists
  */
 router.put('/:id', validateId, validateUpdate, updateProduct);
 
