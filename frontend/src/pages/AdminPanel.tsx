@@ -1,11 +1,10 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ProductTable, PaginationControls } from '../components';
 import { productService } from '../services/productService';
 import type { Product, PaginationData } from '../types';
 import {
   Container,
   Alert,
-  CircularProgress,
   Box,
   Button,
   Dialog,
@@ -273,7 +272,9 @@ export const AdminPanel: React.FC = () => {
               type="number"
               fullWidth
               required
-              inputProps={{ min: 0, step: 0.01 }}
+              // inputProps={{ min: 0, step: 0.01 }}
+              slotProps={{ htmlInput: { min: 0, step: 0.01 } }}
+              
               value={formData.price}
               onChange={(e) =>
                 setFormData({ ...formData, price: e.target.value })
@@ -299,7 +300,8 @@ export const AdminPanel: React.FC = () => {
               label="Stock"
               type="number"
               fullWidth
-              inputProps={{ min: 0, step: 1 }}
+              // inputProps={{ min: 0, step: 1 }}
+              slotProps={{ htmlInput: { min: 0, step: 1 } }}
               value={formData.stock}
               onChange={(e) =>
                 setFormData({ ...formData, stock: e.target.value })

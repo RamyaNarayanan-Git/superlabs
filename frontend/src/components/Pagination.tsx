@@ -1,4 +1,5 @@
-import type { Pagination, Stack, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
+import React from 'react';
+import { Pagination, Stack, Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 import type { PaginationData } from '../types';
 
 interface PaginationProps {
@@ -13,7 +14,7 @@ export const PaginationControls: React.FC<PaginationProps> = ({
   onLimitChange,
 }) => {
   return (
-    <Stack spacing={2} alignItems="center" className="my-6">
+    <Stack spacing={2} sx={{ alignItems: 'center' }} className="my-6">
       <Pagination
         count={pagination.totalPages}
         page={pagination.page}

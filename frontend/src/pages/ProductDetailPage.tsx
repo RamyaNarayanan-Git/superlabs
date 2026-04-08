@@ -90,7 +90,9 @@ export const ProductDetailPage: React.FC = () => {
 
       <Grid container spacing={6}>
         {/* Product Images */}
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}> */}
+        <Grid size={{ xs: 12, md: 6 }}>
+
           <Box className="bg-gray-100 rounded-lg overflow-hidden">
             <img
               src={product.thumbnail || '/placeholder.png'}
@@ -118,7 +120,8 @@ export const ProductDetailPage: React.FC = () => {
         </Grid>
 
         {/* Product Details */}
-        <Grid item xs={12} md={6}>
+        {/* <Grid item xs={12} md={6}> */}
+        <Grid size={{ xs: 12, md: 6 }}>
           <Stack spacing={3}>
             {/* Category & Brand */}
             <Stack direction="row" spacing={1}>
@@ -140,7 +143,7 @@ export const ProductDetailPage: React.FC = () => {
 
             {/* Rating */}
             {product.rating && (
-              <Stack direction="row" spacing={1} alignItems="center">
+              <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
                 <Rating value={product.rating} readOnly />
                 <Typography variant="body2" className="text-gray-600">
                   ({product.review_count || 0} reviews)
@@ -158,7 +161,7 @@ export const ProductDetailPage: React.FC = () => {
                 </Typography>
               </Box>
 
-              <Stack direction="row" spacing={2} alignItems="center">
+              <Stack direction="row" spacing={2} sx={{ alignItems: 'center' }}>
                 <Chip
                   label={
                     product.availability
@@ -196,7 +199,7 @@ export const ProductDetailPage: React.FC = () => {
                     <Stack
                       key={key}
                       direction="row"
-                      justifyContent="space-between"
+                      sx={{ justifyContent: 'space-between' }}
                       className="py-2 border-b border-gray-200"
                     >
                       <Typography variant="body2" className="text-gray-600 capitalize">
@@ -217,7 +220,7 @@ export const ProductDetailPage: React.FC = () => {
                 <Typography variant="body2" className="text-gray-600 mb-2">
                   Tags:
                 </Typography>
-                <Stack direction="row" spacing={1} flexWrap="wrap">
+                <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }}>
                   {product.tags.map((tag) => (
                     <Chip key={tag} label={tag} size="small" variant="filled" />
                   ))}

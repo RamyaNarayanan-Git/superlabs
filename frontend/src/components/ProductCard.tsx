@@ -1,3 +1,4 @@
+import React from 'react';
 import type { Product } from '../types';
 import { Link } from 'react-router-dom';
 import { Card, CardContent, CardMedia, Typography, Chip, Rating, Stack } from '@mui/material';
@@ -76,7 +77,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
           </div>
 
           {product.rating && (
-            <Stack direction="row" spacing={1} alignItems="center">
+            <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
               <Rating value={product.rating} readOnly size="small" />
               <Typography variant="caption" className="text-gray-600">
                 ({product.review_count || 0})
@@ -85,7 +86,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onSelect }) =
           )}
 
           {product.tags && product.tags.length > 0 && (
-            <Stack direction="row" spacing={1} className="flex-wrap gap-1">
+            <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap' }} className="gap-1">
               {product.tags.slice(0, 2).map((tag) => (
                 <Chip key={tag} label={tag} size="small" variant="outlined" />
               ))}
