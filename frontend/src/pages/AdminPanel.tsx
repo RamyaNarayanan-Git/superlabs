@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ProductTable, PaginationControls } from '../components';
+import { useNavigate } from 'react-router-dom';
 import { productService } from '../services/productService';
 import type { Product, PaginationData } from '../types';
 import {
@@ -19,6 +20,7 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 
 export const AdminPanel: React.FC = () => {
+    const navigate = useNavigate();
   const [products, setProducts] = useState<Product[]>([]);
   const [pagination, setPagination] = useState<PaginationData>({
     total: 0,
@@ -181,7 +183,7 @@ export const AdminPanel: React.FC = () => {
   };
 
   const handleView = (id: string) => {
-    window.location.href = `/product/${id}`;
+    navigate(`/product/${id}`);
   };
 
   return (
