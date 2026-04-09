@@ -1,7 +1,10 @@
 import axios from 'axios';
 import type { Product, ApiResponse } from '../types';
+import dotenv  from 'dotenv';
 
-const API_URL = 'http://localhost:5000/api';
+dotenv.config();
+
+const API_URL = process.env.VITE_API_URL || 'http://localhost:5000/api';
 
 const api = axios.create({
   baseURL: API_URL,
